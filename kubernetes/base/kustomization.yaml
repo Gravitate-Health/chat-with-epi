@@ -1,0 +1,6 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - 001-chat-with-epi-service.yaml
+  - 002-chat-with-epi-deployment.yaml

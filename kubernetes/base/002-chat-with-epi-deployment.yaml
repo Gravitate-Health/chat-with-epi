@@ -14,11 +14,11 @@ spec:
     spec:
       containers:
       - name: chat-with-epi
-        image: gravitate-registry.cr.de-fra.ionos.com/chat-with-epi:latest
+        image: gravitate-registry.cr.de-fra.ionos.com/chat-with-epi:v0.1.0
         imagePullPolicy: Always
         env:
         - name: SERVER_URL
-          value: "https://gravitate-health.lst.tfo.upm.es/"
+          value: "https://fosps.gravitatehealth.eu/"
         - name: MODEL_URL
           value: "http://tinman.lst:11434"
         - name: OPENAI_KEY

@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chat-with-epi
+spec:
+  selector:
+    matchLabels:
+      app: chat-with-epi
+  template:
+    spec:
+      containers:
+      - name: chat-with-epi
+        image: gravitate-registry.cr.de-fra.ionos.com/chat-with-epi:latest
+        env:
+        - name: SERVER_URL
+          value: "https://gravitate-health.lst.tfo.upm.es/"
+status: {}
