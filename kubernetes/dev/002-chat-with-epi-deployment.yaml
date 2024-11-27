@@ -14,4 +14,6 @@ spec:
         env:
         - name: SERVER_URL
           value: "https://gravitate-health.lst.tfo.upm.es/"
-status: {}
+        - name: MODEL_URL
+          value: "http://tinman.lst:11434"
+        resources: {}

@@ -20,8 +20,8 @@ spec:
         - name: SERVER_URL
           value: "https://fosps.gravitatehealth.eu/"
         - name: MODEL_URL
-          value: "http://tinman.lst:11434"
+          value: "https://ollama.lst.tfo.upm.es"
         - name: OPENAI_KEY
           value: ""
+        resources: {}
       restartPolicy: Always
-status: {}
