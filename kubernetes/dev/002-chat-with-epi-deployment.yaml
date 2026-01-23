@@ -10,7 +10,7 @@ spec:
     spec:
       containers:
       - name: chat-with-epi
-        image: gravitate-registry.cr.de-fra.ionos.com/chat-with-epi:latest
+        image: ghcr.io/gravitate-health/chat-with-epi:latest
         env:
         - name: SERVER_URL
           value: "https://gravitate-health.lst.tfo.upm.es/"
