@@ -17,8 +17,10 @@ spec:
         image: ghcr.io/gravitate-health/chat-with-epi:v0.1.0
         imagePullPolicy: Always
         env:
-        - name: SERVER_URL
-          value: "https://fosps.gravitatehealth.eu/"
+        - name: FHIR_IPS_URL
+          value: "http://fhir-server-ips:8080/api/fhir"
+        - name: FHIR_EPI_URL
+          value: "http://fhir-server-epi:8080/api/fhir"
         - name: MODEL_URL
           value: "https://ollama.lst.tfo.upm.es"
         - name: OPENAI_KEY

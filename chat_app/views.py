@@ -2,7 +2,7 @@ import json
 from flask import render_template, request, jsonify
 from chat_app import app
 import requests
-from chat_app.core import SERVER_URL, process_bundle, process_ips, medicationchat
+from chat_app.core import FHIR_IPS_URL, FHIR_EPI_URL, process_bundle, process_ips, medicationchat
 import markdown
 
 
@@ -12,10 +12,6 @@ print(app.config)
 @app.route("/", methods=["GET"])
 def hello():
     return render_template("chat.html")
-
-
-##POST https://fosps.gravitatehealth.eu/focusing/focus/bundlepackageleaflet-es-56a32a5ee239fc834b47c10db1faa3fd?preprocessors=preprocessing-service-manual&patientIdentifier=Cecilia-1&lenses=lens-selector-mvp2_pregnancy
-
 
 @app.route("/chat/<bundleid>", methods=["POST"])
 def lens_app(bundleid=None):
@@ -43,13 +39,11 @@ def lens_app(bundleid=None):
         print("epibundle is none")
         # print(epibundle)
         # print(bundleid)
-        print(SERVER_URL + "epi/api/fhir/Bundle/" + bundleid)
-        epibundle = requests.get(SERVER_URL + "epi/api/fhir/Bundle/" + bundleid).json()
+        print(FHIR_EPI_URL + "/Bundle/" + bundleid)
+        epibundle = requests.get(FHIR_EPI_URL + "/Bundle/" + bundleid).json()
     # print(epibundle)
     language, epi, drug_name = process_bundle(epibundle)
-    # GET https://fosps.gravitatehealth.eu/ips/api/fhir/Patient/$summary?identifier=alicia-1
 
-    print(SERVER_URL)
     if ips is None:
         payload = json.dumps({
             "resourceType" : "Parameters",
@@ -62,7 +56,7 @@ def lens_app(bundleid=None):
         headers = {
             "Content-Type": "application/json"
         }
-        ips_url = SERVER_URL + "ips/api/fhir/Patient/$summary"
+        ips_url = FHIR_IPS_URL + "/Patient/$summary"
         response = requests.request("POST", ips_url, headers=headers, data=payload)
         ips = response.json()
     gender, age, diagnostics, medications = process_ips(ips)
