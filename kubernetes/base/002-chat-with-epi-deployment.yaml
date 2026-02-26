@@ -18,9 +18,9 @@ spec:
         imagePullPolicy: Always
         env:
         - name: FHIR_IPS_URL
-          value: "http://fhir-server-ips:8080/api/fhir"
+          value: "http://fhir-server-ips:8080/ips/api/fhir"
         - name: FHIR_EPI_URL
-          value: "http://fhir-server-epi:8080/api/fhir"
+          value: "http://fhir-server-epi:8080/epi/api/fhir"
         - name: MODEL_URL
           value: "https://ollama.lst.tfo.upm.es"
         - name: OPENAI_KEY
