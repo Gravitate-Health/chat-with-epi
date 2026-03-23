@@ -1,0 +1,38 @@
+replicaCount: 1
+
+image:
+  repository: ghcr.io/gravitate-health/chat-with-epi
+  tag: v0.2.0
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 80
+
+resources:
+  requests: {}
+  limits: {}
+
+config:
+  fhirIpsUrl: http://fhir-server-ips:8080/ips/api/fhir
+  fhirEpiUrl: http://fhir-server-epi:8080/epi/api/fhir
+  modelUrl: https://ollama.lst.tfo.upm.es
+
+secret:
+  openaiKey: ""
+
+networking:
+  # Options: ingress | istio | none
+  # Default is ingress because no Istio manifests were found in the repository.
+  type: none
+  ingress:
+    enabled: true
+    className: ""
+    annotations: {}
+    hosts:
+      - host: chat-with-epi.local
+        paths:
+          - path: /
+            pathType: Prefix
+    tls: []
